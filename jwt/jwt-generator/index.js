@@ -1,31 +1,41 @@
-const express = require('express');
-const router = require('./routes/routes');
-const mongoose = require('mongoose');
-const http = require('http');
-const bodyParser = require('body-parser');
-require('./auth/auth');
+import express from 'express'
+import mongoose from 'mongoose'
+import bodyParser from 'body-parser'
+import http from 'http'
+import path from 'path'
 
-const UserModel = require('./model/user.model');
+import { router } from './routes/routes.js'
+import * as auth from './auth/auth.js'
+import UserModel from './model/user.model.js'
 
 mongoose.connect('mongodb://127.0.0.1:27017/passport-jwt');
 mongoose.connection.on('error', error => console.log(error) );
 mongoose.Promise = global.Promise;
 
 const app = express();
+// view engine setup
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "public")))
 app.use(router);
+console.log('- Registered endpoint /user')
+console.log('- Registered endpoint /signup')
+console.log('- Registered endpoint /login')
 
 // Handle errors.
-app.use(function(err, req, res, next) {
+/* app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.json({ error: err });
-});
+}); */
 
+// Port
+const port = 3000;
 
 const httpServer = http.createServer(app);
-httpServer.listen(3000);
+httpServer.listen(port);
 httpServer.on('listening', () => {
-  console.log(`Listening on port ${3000}`);
+  console.log(`Listening on port ${port}`);
 });
 httpServer.on('error', (error) => {
   console.error(error);

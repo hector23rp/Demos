@@ -1,8 +1,12 @@
-const express = require("express");
-const passport = require("passport");
-const jwt = require("jsonwebtoken");
+import express from 'express'
+import passport from 'passport'
+import jwt from 'jsonwebtoken'
 
-const router = express.Router();
+export const router = express.Router();
+
+router.get("/", (_, res) => {
+  res.render("index", { title: "JWT Example" });
+});
 
 router.post(
   "/signup",
@@ -33,14 +37,12 @@ router.post(
 );
 
 router.get(
-  '/user',
-  passport.authenticate('jwt', { session: false }),
+  "/user",
+  passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     res.json({
       user: req.user,
-      token: req.query
-    })
+      token: req.query,
+    });
   }
-)
-
-module.exports = router;
+);
