@@ -3,15 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "node ./bin/backend.js",
+    "start": "yarn run build:watch & node ./bin/backend.js",
     "build": "webpack",
-    "test": "jest --verbose --coverage --bail"
+    "build:watch": "webpack --watch",
+    "test": "jest --verbose"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
+    "axios": "^0.21.1",
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
     "ejs": "^3.1.6",
@@ -21,6 +23,7 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
+    "qs": "^6.9.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "swagger-jsdoc": "^7.0.0-rc.2",
