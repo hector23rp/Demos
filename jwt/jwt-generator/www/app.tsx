@@ -1,7 +1,13 @@
-import React from 'react'
+import React from "react";
+import Form from "./form";
 
 const App: React.FC = () => {
-  return <h1>Hello JWT</h1>
-}
+  return (
+    <>
+      <h1>JWT Login</h1>
+      <Form />
+    </>
+  );
+};
 
 export default App;
