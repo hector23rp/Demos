@@ -5,11 +5,11 @@ import App from "./app";
 
 describe("Principal Aplication", () => {
 
-  it("should print 'Hello JWT' when is loaded", () => {
+  it("should print 'JWT Login' when is loaded", () => {
     render(<App />);
 
-    const element = screen.getByText("Hello JWT");
+    const element = screen.getByText("JWT Login");
 
-    expect(element.textContent).toEqual("Hello JWT");
+    expect(element.textContent).toEqual("JWT Login");
   })
 });
