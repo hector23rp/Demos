@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
-import { FormProps } from "./form.type";
+import { FormProps, ValidationStatus } from "./form.type";
 
 const Form: React.FC<FormProps> = ({ authService, hasConfirmPassword }) => {
   const [username, setUsername] = useState<String>("");
   const [password, setPassword] = useState<String>("");
   const [confirmPassword, setConfirmPassword] = useState<String>("");
+  const [validationStatus, setValidationStatus] = useState<ValidationStatus>();
   const [error, setError] = useState<String>("");
   const [token, setToken] = useState<String>("");
   const inputUsername = "username";
@@ -28,6 +29,9 @@ const Form: React.FC<FormProps> = ({ authService, hasConfirmPassword }) => {
     event.preventDefault();
     setError("");
     setToken("");
+    if (!validateForm()) {
+      return;
+    }
     try {
       authService.setBody({username, password});
       const response = await authService.authService();
@@ -36,6 +40,23 @@ const Form: React.FC<FormProps> = ({ authService, hasConfirmPassword }) => {
       setError(error.message);
     }
   };
+
+  const validateForm = (): Boolean => {
+    if (!username || username === "") {
+      setValidationStatus(ValidationStatus.EMPTY_USERNAME);
+      return false;
+    }
+    if (!password || password === "") {
+      setValidationStatus(ValidationStatus.EMPTY_PASSWORD);
+      return false;
+    }
+    if (hasConfirmPassword && password !== confirmPassword) {
+      setValidationStatus(ValidationStatus.PASSWORD_NOT_EQUAL);
+      return false;
+    }
+    setValidationStatus(undefined)
+    return true
+  }
 
   return (
     <form onSubmit={handleSumbit}>
@@ -68,6 +89,9 @@ const Form: React.FC<FormProps> = ({ authService, hasConfirmPassword }) => {
         </>
       }
       <button type="submit">Submit</button>
+      {validationStatus &&
+        <strong style={{color: "red"}}>{validationStatus}</strong>
+      }
       {error &&
         <strong style={{color: "red"}}>{error}</strong>
       }
