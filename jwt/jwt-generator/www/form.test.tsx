@@ -4,6 +4,7 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 
 import Form from "./form";
+import { AuthService } from "./services/auth.service";
 
 describe("Formulario tests", () => {
   const server = setupServer(
@@ -21,7 +22,8 @@ describe("Formulario tests", () => {
   afterAll(() => server.close());
 
   beforeEach(() => {
-    render(<Form />);
+    const authService = new AuthService('/login');
+    render(<Form authService={authService}/>);
   });
 
   it("should print 'Username' label", () => {

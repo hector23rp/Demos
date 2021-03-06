@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { loginService } from "./services/auth.service";
 
-const Form: React.FC = () => {
+import { FormProps } from "./form.type";
+
+const Form: React.FC<FormProps> = ({ authService }) => {
   const [username, setUsername] = useState<String>("");
   const [password, setPassword] = useState<String>("");
   const [error, setError] = useState<String>("");
@@ -23,7 +24,8 @@ const Form: React.FC = () => {
     setError("");
     setToken("");
     try {
-      const response = await loginService(username, password);
+      authService.setBody({username, password});
+      const response = await authService.authService();
       setToken(response.data.token)
     } catch (error) {
       setError(error.message);
