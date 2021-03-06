@@ -8,8 +8,8 @@ describe("Principal Aplication", () => {
   it("should print 'JWT Login' when is loaded", () => {
     render(<App />);
 
-    const element = screen.getByText("JWT Login");
+    const element = screen.getByText("JWT");
 
-    expect(element.textContent).toEqual("JWT Login");
+    expect(element.textContent).toEqual("JWT");
   })
 });
