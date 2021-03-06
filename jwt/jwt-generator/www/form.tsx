@@ -2,13 +2,15 @@ import React, { useState } from "react";
 
 import { FormProps } from "./form.type";
 
-const Form: React.FC<FormProps> = ({ authService }) => {
+const Form: React.FC<FormProps> = ({ authService, hasConfirmPassword }) => {
   const [username, setUsername] = useState<String>("");
   const [password, setPassword] = useState<String>("");
+  const [confirmPassword, setConfirmPassword] = useState<String>("");
   const [error, setError] = useState<String>("");
   const [token, setToken] = useState<String>("");
   const inputUsername = "username";
   const inputPassword = "password";
+  const inputConfirmPassword = "confirm-password";
 
   const handleChange = ({ target }) => {
     if (target.name === inputUsername) {
@@ -16,6 +18,9 @@ const Form: React.FC<FormProps> = ({ authService }) => {
     }
     if (target.name === inputPassword) {
       setPassword(target.value);
+    }
+    if (hasConfirmPassword && target.name === inputConfirmPassword) {
+      setConfirmPassword(target.value);
     }
   };
 
@@ -50,7 +55,19 @@ const Form: React.FC<FormProps> = ({ authService }) => {
         placeholder="Write here..."
         onChange={handleChange}
       />
-      <button type="submit">Login</button>
+      { hasConfirmPassword &&
+        <> 
+          <label htmlFor="confirm-password-input">Confirm Password</label>
+          <input
+            id="confirm-password-input"
+            name={inputConfirmPassword}
+            type="text"
+            placeholder="Write here..."
+            onChange={handleChange}
+          />
+        </>
+      }
+      <button type="submit">Submit</button>
       {error &&
         <strong style={{color: "red"}}>{error}</strong>
       }

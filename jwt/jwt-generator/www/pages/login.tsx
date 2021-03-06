@@ -8,7 +8,7 @@ const Login: React.FC = () => {
   return (
     <div>
       <h1>Login</h1>
-      <Form authService={authService}/>
+      <Form authService={authService} hasConfirmPassword={false}/>
     </div>
   )
 }
