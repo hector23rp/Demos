@@ -8,5 +8,8 @@ module.exports = {
     "tsx",
     "js",
     "json"
-  ]
+  ],
+  "moduleNameMapper": {
+    "\\.(css|scss)$": "identity-obj-proxy"
+  }
 };
