@@ -55,8 +55,12 @@ describe("Formulario tests", () => {
   });
 
   it("should print token when it login succesfully", async () => {
+    const inputUsername = screen.getByLabelText("Username") as HTMLInputElement;
+    const inputPassword = screen.getByLabelText("Password") as HTMLInputElement;
     const button = screen.getByRole("button");
 
+    fireEvent.change(inputUsername, { target: { value: "1234" } });
+    fireEvent.change(inputPassword, { target: { value: "pepe" } });
     fireEvent.click(button);
 
     await waitFor(() => {
@@ -70,8 +74,12 @@ describe("Formulario tests", () => {
         return res(ctx.status(401))
       })
     );
+    const inputUsername = screen.getByLabelText("Username") as HTMLInputElement;
+    const inputPassword = screen.getByLabelText("Password") as HTMLInputElement;
     const button = screen.getByRole("button");
 
+    fireEvent.change(inputUsername, { target: { value: "1234" } });
+    fireEvent.change(inputPassword, { target: { value: "pepe" } });
     fireEvent.click(button);
 
     await waitFor(() => {
