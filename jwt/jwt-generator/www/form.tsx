@@ -103,12 +103,12 @@ const Form: React.FC<FormProps> = ({ authService, hasConfirmPassword }) => {
         <strong style={{color: "red"}}>{validationStatus}</strong>
       }
       {error &&
-        <strong style={{color: "red"}}>{error}</strong>
+        <strong id="error" style={{color: "red"}}>{error}</strong>
       }
       {token &&
-        <strong style={{color: "green"}}>{token}</strong>}
+        <strong id="token" style={{color: "green"}}>{token}</strong>}
       {message &&
-        <strong style={{color: "green"}}>{message}</strong>}
+        <strong id="message" style={{color: "green"}}>{message}</strong>}
     </form>
   );
 };

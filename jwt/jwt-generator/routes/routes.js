@@ -2,6 +2,8 @@ import express from 'express'
 import passport from 'passport'
 import jwt from 'jsonwebtoken'
 
+import UserModel from "../model/user.model"
+
 export const router = express.Router();
 
 router.get("/", (_, res) => {
@@ -46,3 +48,15 @@ router.get(
     });
   }
 );
+
+router.delete(
+  "/user",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    const userDeleted = await UserModel.deleteOne(req.user);
+    res.json({
+      user: userDeleted,
+      token: req.query,
+    });
+  }
+)
