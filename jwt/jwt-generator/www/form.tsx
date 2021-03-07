@@ -74,6 +74,7 @@ const Form: React.FC<FormProps> = ({ authService, hasConfirmPassword }) => {
         type="text"
         placeholder="Write here..."
         onChange={handleChange}
+        required
       />
       <label htmlFor="password-input">Password</label>
       <input
@@ -82,6 +83,7 @@ const Form: React.FC<FormProps> = ({ authService, hasConfirmPassword }) => {
         type="text"
         placeholder="Write here..."
         onChange={handleChange}
+        required
       />
       { hasConfirmPassword &&
         <> 
@@ -92,6 +94,7 @@ const Form: React.FC<FormProps> = ({ authService, hasConfirmPassword }) => {
             type="text"
             placeholder="Write here..."
             onChange={handleChange}
+            required
           />
         </>
       }

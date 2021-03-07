@@ -1,0 +1,54 @@
+/* ------------------------------------------------------------------------ */
+/* Login page */
+/* ------------------------------------------------------------------------ */
+
+.login-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--white);
+  margin: var(--space-md);
+}
+
+.login-logo {
+  height: 80px;
+  vertical-align: middle;
+}
+
+.login-page {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(var(--primary), var(--primary-light));
+}
+
+.login-container {
+  flex: auto;
+  max-width: 480px;
+  max-height: 100%;
+  overflow: auto;
+}
+
+.login-content {
+  background-color: var(--background);
+  padding: var(--space-sm);
+}
+
+.login-separator {
+  position: relative;
+  top: 0.5em;
+  border-top: 1px solid var(--border);
+  opacity: 0.6;
+  margin: var(--space-md) 0;
+}
+
+.login-separator > span {
+  position: relative;
+  top: -0.5em;
+  background-color: var(--background);
+  padding: var(--space-sm);
+}
+
+.text-center {
+  text-align: center;
+}
