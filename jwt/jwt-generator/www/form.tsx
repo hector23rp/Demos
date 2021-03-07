@@ -9,6 +9,7 @@ const Form: React.FC<FormProps> = ({ authService, hasConfirmPassword }) => {
   const [validationStatus, setValidationStatus] = useState<ValidationStatus>();
   const [error, setError] = useState<String>("");
   const [token, setToken] = useState<String>("");
+  const [message, setMessage] = useState<String>("");
   const inputUsername = "username";
   const inputPassword = "password";
   const inputConfirmPassword = "confirm-password";
@@ -29,13 +30,19 @@ const Form: React.FC<FormProps> = ({ authService, hasConfirmPassword }) => {
     event.preventDefault();
     setError("");
     setToken("");
+    setMessage("");
     if (!validateForm()) {
       return;
     }
     try {
       authService.setBody({username, password});
       const response = await authService.authService();
-      setToken(response.data.token)
+      if (response.data.token) {
+        setToken(response.data.token)
+      }
+      if (response.data.message) {
+        setMessage(response.data.message);
+      }
     } catch (error) {
       setError(error.message);
     }
@@ -97,6 +104,8 @@ const Form: React.FC<FormProps> = ({ authService, hasConfirmPassword }) => {
       }
       {token &&
         <strong style={{color: "green"}}>{token}</strong>}
+      {message &&
+        <strong style={{color: "green"}}>{message}</strong>}
     </form>
   );
 };
