@@ -23,12 +23,6 @@ console.log('- Registered endpoint /user')
 console.log('- Registered endpoint /signup')
 console.log('- Registered endpoint /login')
 
-// Handle errors.
-/* app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.json({ error: err });
-}); */
-
 // Port
 const port = 3000;
 
