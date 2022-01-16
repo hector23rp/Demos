@@ -9,5 +9,3 @@ Documentación sobre las diferentes formas de autenticación Web (JWT, Sesiones,
 # License
 
 MIT. Copyright (c) Héctor Rivas
-
-test
